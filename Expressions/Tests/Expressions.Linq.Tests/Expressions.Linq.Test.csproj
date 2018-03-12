@@ -17,6 +17,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Expressions.Linq\Expressions.Linq.csproj" />
     <ProjectReference Include="..\..\Expressions\Expressions.csproj" />
-    <ProjectReference Include="..\Expressions.Test\Expressions.Test.csproj" />
   </ItemGroup>
 </Project>

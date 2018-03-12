@@ -169,46 +169,8 @@ namespace NMF.Expressions.Linq
                 else
                 {
                     var itemChange = (ValueChangedNotificationResult<TResult>)change;
-                    if (source.Count() > 1)
-                    {
-                        // if there are multiple changes, we need to check whether the change belongs to items
-                        // we just added or removed
-                        var addIndex = added.IndexOf(itemChange.OldValue);
-                        var removeIndex = removed.IndexOf(itemChange.NewValue);
-                        if (addIndex == -1)
-                        {
-                            if (removeIndex == -1)
-                            {
-                                // the changed item was not added or removed
-                                removed.Add(itemChange.OldValue);
-                                added.Add(itemChange.NewValue);
-                            }
-                            else
-                            {
-                                // if the value is removed, remove the old value only
-                                removed[removeIndex] = itemChange.OldValue;
-                            }
-                        }
-                        else
-                        {
-                            if (removeIndex == -1)
-                            {
-                                // an added item changed
-                                added[addIndex] = itemChange.NewValue;
-                            }
-                            else
-                            {
-                                // an added item turns out to be the same as a removed item, so erase the change
-                                added.RemoveAt(addIndex);
-                                removed.RemoveAt(removeIndex);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        removed.Add(itemChange.OldValue);
-                        added.Add(itemChange.NewValue);
-                    }
+                    removed.Add(itemChange.OldValue);
+                    added.Add(itemChange.NewValue);
                 }
             }
             RaiseEvents(added, removed, null);
